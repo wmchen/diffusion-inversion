@@ -1,0 +1,7 @@
+**/__pycache__/
+.vscode/
+clear_pycache.py
+test*
+package*
+node_modules/
+.all-contributorsrc

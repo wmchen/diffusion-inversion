@@ -1,0 +1,19 @@
+type: EDICT
+image: /home/wmchen/projects/GitProjects/diffusion-inversion/demo/alley.jpg
+models: /home/wmchen/projects/models/Stable-Diffusion/stable-diffusion-v1-4/
+prompt: A narrow alley way with a building in the background.
+mix_weight: 0.93
+width: 512
+height: 512
+num_inference_steps: 50
+guidance_scale: 7.5
+scheduler: 
+  type: CustomDDIMScheduler
+  beta_start: 0.00085
+  beta_end: 0.012
+  beta_schedule: scaled_linear
+  clip_sample: False
+  set_alpha_to_one: False
+  steps_offset: 1
+seed: 123456
+device: cuda:0
