@@ -17,12 +17,11 @@ conda env create -f environment.yaml
 conda activate diffusion-inversion
 ```
 
-You can also install the dependencies manually using pip:
+You can also install the dependencies manually by executing the following commands:
 
 ```bash
-cd requirements
-pip install -r torch.txt
-pip install -r base.txt
+conda install pytorch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 pytorch-cuda=11.8 -c pytorch -c nvidia
+pip install -r requirements.txt
 ```
 
 Other versions of Python modules may work, but they are untested. We recommend using our conda environment to avoid any compatibility issues.
