@@ -38,9 +38,9 @@ Please refer to [examples.ipynb](./examples.ipynb) for a quick start.
 - [x] Negative Prompt Inversion (NPI): [paper](http://arxiv.org/abs/2305.16807)
 - [x] (CVPR'23) Null-Text Inversion (NTI): [paper](https://openaccess.thecvf.com/content/CVPR2023/html/Mokady_NULL-Text_Inversion_for_Editing_Real_Images_Using_Guided_Diffusion_Models_CVPR_2023_paper.html), [official implementation](https://github.com/google/prompt-to-prompt)
 - [x] (CVPR'23) Exact Diffusion Inversion via Coupled Transformations (EDICT): [paper](https://openaccess.thecvf.com/content/CVPR2023/html/Wallace_EDICT_Exact_Diffusion_Inversion_via_Coupled_Transformations_CVPR_2023_paper.html), [official implementation](https://github.com/salesforce/EDICT)
-- [x] Fixed-Point Inversion (FPI): [paper](https://arxiv.org/abs/2312.12540v1), [official implementation](https://github.com/dvirsamuel/FPI)
 - [x] (ICCV'23) Accelerated Iterative Diffusion Inversion (AIDI): [paper](https://openaccess.thecvf.com/content/ICCV2023/html/Pan_Effective_Real_Image_Editing_with_Accelerated_Iterative_Diffusion_Inversion_ICCV_2023_paper.html)
 - [x] (ICCV'23) Prompt Tuning Inversion (PTI): [paper](https://openaccess.thecvf.com/content/ICCV2023/html/Dong_Prompt_Tuning_Inversion_for_Text-driven_Image_Editing_Using_Diffusion_Models_ICCV_2023_paper.html)
+- [x] Fixed-Point Inversion (FPI): [paper](https://arxiv.org/abs/2312.12540v1), [official implementation](https://github.com/dvirsamuel/FPI)
 - [x] (AAAI'24) Tuning-free Inversion-enhanced Control (TIC): [paper](https://ojs.aaai.org/index.php/AAAI/article/view/27931)
 - [ ] (ECCV'24) ReNoise: [paper](https://arxiv.org/abs/2403.14602), [official implementation](https://github.com/garibida/ReNoise-Inversion) 
 - [ ] (AAAI'25 under review) our method
