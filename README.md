@@ -10,6 +10,8 @@ This repository is a collection of diffusion inversion methods, and also the off
 
 ## Installation
 
+### Install with conda (recommended)
+
 We provide a conda environment that is fully tested. Run the following command to create and activate the environment:
 
 ```bash
@@ -17,10 +19,12 @@ conda env create -f environment.yaml
 conda activate diffusion-inversion
 ```
 
+### Install with pip
+
 You can also install the dependencies manually by executing the following commands:
 
 ```bash
-conda install pytorch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 pytorch-cuda=11.8 -c pytorch -c nvidia
+pip install torch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 --index-url https://download.pytorch.org/whl/cu118
 pip install -r requirements.txt
 ```
 
