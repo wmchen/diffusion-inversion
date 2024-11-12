@@ -6,4 +6,5 @@ from .fpi import fixed_point_inversion
 from .aidi import accelerated_iterative_diffusion_inversion
 from .pti import prompt_tuning_inversion
 from .tic import tuning_free_inversion_enhanced_control
+from .rival import real_world_image_variation_by_alignment
 from .utils import *

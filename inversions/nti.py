@@ -4,8 +4,7 @@ import torch
 import torch.nn.functional as F
 import torch.optim as optim
 from typing import Union, Optional, Sequence
-from tqdm import tqdm
-from mlcbase import ConfigDict, Logger, is_str, is_dict
+from mlcbase import ConfigDict, Logger, EmojiProgressBar, is_str, is_dict
 from .utils import *
 
 
@@ -99,7 +98,7 @@ def null_text_inversion(image: Union[str, pil.Image],
 
     # ddim inversion
     inverse_latents = [latent]
-    with tqdm(total=num_inference_steps, desc="DDIM Inversion") as pbar:
+    with EmojiProgressBar(total=num_inference_steps, desc="DDIM Inversion") as pbar:
         for i in range(num_inference_steps):
             t = timesteps[num_inference_steps-i-1]
             latent_model_input = scheduler.scale_model_input(latent, t)
@@ -113,7 +112,7 @@ def null_text_inversion(image: Union[str, pil.Image],
     # null text optimization
     uncond_embeddings = []
     latent = inverse_latents[-1]
-    with tqdm(total=num_inference_steps*num_optim_steps, desc="NTI") as pbar:
+    with EmojiProgressBar(total=num_inference_steps*num_optim_steps, desc="NTI") as pbar:
         for i in range(num_inference_steps):
             t = timesteps[i]
             uncond_prompt_emb = uncond_prompt_emb.clone().detach()
@@ -143,7 +142,7 @@ def null_text_inversion(image: Union[str, pil.Image],
     
     # denoise
     latent = inverse_latents[-1]
-    with tqdm(total=num_inference_steps, desc="denosie") as pbar:
+    with EmojiProgressBar(total=num_inference_steps, desc="denosie") as pbar:
         for i in range(num_inference_steps):
             t = timesteps[i]
             prompt_embs = torch.cat([uncond_embeddings[i], cond_prompt_emb])

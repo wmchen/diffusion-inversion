@@ -2,8 +2,7 @@ import random
 import PIL.Image as pil
 import torch
 from typing import Union, Optional, Sequence
-from tqdm import tqdm
-from mlcbase import ConfigDict, Logger, is_str, is_dict
+from mlcbase import ConfigDict, Logger, EmojiProgressBar, is_str, is_dict
 from diffusers.schedulers.scheduling_utils import SchedulerMixin
 from .utils import *
 
@@ -142,7 +141,7 @@ def accelerated_iterative_diffusion_inversion(
 
     # inverse
     inverse_latents = [latent]
-    with tqdm(total=num_inference_steps*num_iter_steps, desc="AIDI") as pbar:
+    with EmojiProgressBar(total=num_inference_steps*num_iter_steps, desc="AIDI") as pbar:
         for i in range(num_inference_steps):
             t = timesteps[num_inference_steps-i-1]
             prompt_emb = torch.cat([uncond_prompt_emb, cond_prompt_emb]) if do_classifier_free_guidance else cond_prompt_emb
@@ -171,7 +170,7 @@ def accelerated_iterative_diffusion_inversion(
     outputs.latents = inverse_latents
 
     # denoise
-    with tqdm(total=num_inference_steps, desc="denoise") as pbar:
+    with EmojiProgressBar(total=num_inference_steps, desc="denoise") as pbar:
         for i in range(num_inference_steps):
             t = timesteps[i]
             latent_model_input = torch.cat([latent] * 2) if do_classifier_free_guidance else latent

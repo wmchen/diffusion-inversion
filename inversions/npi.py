@@ -2,8 +2,7 @@ import random
 import PIL.Image as pil
 import torch
 from typing import Union, Optional, Sequence
-from tqdm import tqdm
-from mlcbase import ConfigDict, Logger, is_str, is_dict
+from mlcbase import ConfigDict, Logger, EmojiProgressBar, is_str, is_dict
 from .utils import *
 
 
@@ -88,7 +87,7 @@ def negative_prompt_inversion(image: Union[str, pil.Image],
 
     # inverse
     inverse_latents = [latent]
-    with tqdm(total=num_inference_steps, desc="NPI") as pbar:
+    with EmojiProgressBar(total=num_inference_steps, desc="NPI") as pbar:
         for i in range(num_inference_steps):
             t = timesteps[num_inference_steps-i-1]
             latent_model_input = scheduler.scale_model_input(latent, t)
@@ -100,7 +99,7 @@ def negative_prompt_inversion(image: Union[str, pil.Image],
     outputs.latents = inverse_latents
 
     # denoise
-    with tqdm(total=num_inference_steps, desc="denoise") as pbar:
+    with EmojiProgressBar(total=num_inference_steps, desc="denoise") as pbar:
         for i in range(num_inference_steps):
             t = timesteps[i]
             latent_model_input = scheduler.scale_model_input(latent, t)

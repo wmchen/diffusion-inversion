@@ -1,11 +1,10 @@
 import random
 import torch
 from typing import Optional, Union
-from tqdm import tqdm
 from transformers import CLIPTokenizer, CLIPTextModel, CLIPTextModelWithProjection
 from diffusers import UNet2DConditionModel, AutoencoderKL
 from diffusers.image_processor import VaeImageProcessor
-from mlcbase import is_str, is_dict
+from mlcbase import ConfigDict, EmojiProgressBar, is_str, is_dict
 from .scheduler import SCHEDULER, CustomDDIMScheduler
 from .misc import encode_prompt, latent2image
 from .utils import MODELS, Text2ImageModels
@@ -40,10 +39,12 @@ class StableDiffusionT2IModels(Text2ImageModels):
                    negative_prompt: str = "",
                    width: int = 512,
                    height: int = 512,
+                   init_latent: Optional[torch.Tensor] = None,
                    num_inference_steps: int = 50,
                    guidance_scale: float = 7.5,
                    scheduler: Optional[Union[CustomDDIMScheduler, str, dict]] = None,
                    seed: Optional[int] = None):
+        output = ConfigDict()
         if seed is None:
             seed = random.randint(0, 2**32 - 1)
         generator = torch.Generator(device=self.device).manual_seed(seed)
@@ -71,12 +72,15 @@ class StableDiffusionT2IModels(Text2ImageModels):
             uncond_prompt_emb = encode_prompt(negative_prompt, self)
 
         # prepare latent
-        vae_scale_factor = 2 ** (len(self.vae.config.block_out_channels) - 1)
-        shape = (1, self.unet.config.in_channels, height // vae_scale_factor, width // vae_scale_factor)
-        latent = torch.randn(shape, generator=generator, device=self.device, dtype=self.dtype, layout=torch.strided)
+        if init_latent is None:
+            vae_scale_factor = 2 ** (len(self.vae.config.block_out_channels) - 1)
+            shape = (1, self.unet.config.in_channels, height // vae_scale_factor, width // vae_scale_factor)
+            latent = torch.randn(shape, generator=generator, device=self.device, dtype=self.dtype, layout=torch.strided)
+        else:
+            latent = init_latent.clone()
         
         # denoise
-        with tqdm(total=num_inference_steps, desc="denoise") as pbar:
+        with EmojiProgressBar(total=num_inference_steps, desc="denoise: ") as pbar:
             for i in range(num_inference_steps):
                 t = timesteps[i]
                 latent_model_input = torch.cat([latent] * 2) if do_cfg else latent
@@ -88,8 +92,10 @@ class StableDiffusionT2IModels(Text2ImageModels):
                     noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_cond - noise_pred_uncond)
                 latent = scheduler.denoise_step(noise_pred, t, latent)
                 pbar.update(1)
+        output.z0 = latent.clone()
                 
         # latent to image
         image = latent2image(latent, self)
+        output.image = image
         
-        return image
+        return output

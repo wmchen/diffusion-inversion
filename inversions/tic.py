@@ -3,8 +3,7 @@ import PIL.Image as pil
 import torch
 import torch.nn.functional as F
 from typing import Union, Optional, Sequence
-from tqdm import tqdm
-from mlcbase import ConfigDict, Logger, is_str, is_dict
+from mlcbase import ConfigDict, Logger, EmojiProgressBar, is_str, is_dict
 from diffusers.models import UNet2DConditionModel
 from diffusers.models.attention_processor import Attention
 from .utils import *
@@ -361,7 +360,7 @@ def tuning_free_inversion_enhanced_control(
     self_attn = []
     attn_hook = AttentionQKVHook(models.unet)
     attn_hook.parse_module()
-    with tqdm(total=num_inference_steps, desc="TIC") as pbar:
+    with EmojiProgressBar(total=num_inference_steps, desc="TIC") as pbar:
         for i in range(num_inference_steps):
             t = timesteps[num_inference_steps-i-1]
             latent_model_input = scheduler.scale_model_input(latent, t)
@@ -378,7 +377,7 @@ def tuning_free_inversion_enhanced_control(
     outputs.latents = inverse_latents
     
     # denoise
-    with tqdm(total=num_inference_steps, desc="denoise") as pbar:
+    with EmojiProgressBar(total=num_inference_steps, desc="denoise") as pbar:
         for i in range(num_inference_steps):
             if i > start_timestep:
                 attn_inverter = AttentionQKVInverter(models.unet, 
