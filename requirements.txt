@@ -5,6 +5,6 @@ scikit-image
 lpips
 ipykernel
 ipywidgets
-diffusers==0.30.0
-transformers==4.44.0
-accelerate==0.33.0
+diffusers==0.31.0
+transformers==4.47.0
+accelerate

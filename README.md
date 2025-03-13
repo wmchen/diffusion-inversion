@@ -3,32 +3,32 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-This repository is a collection of diffusion inversion methods, and also the official implementation of our inversion method (AAAI'25 under review).
+This repository is a collection of diffusion inversion methods.
 
 **NOTE** that this repository is only build for inversion, applications to downstream tasks (e.g. image editing, rare concept generation, etc) are not included.
 
 
 ## Installation
 
-### Install with conda (recommended)
-
-We provide a conda environment that is fully tested. Run the following command to create and activate the environment:
+Create and activate a `conda` environment:
 
 ```bash
-conda env create -f environment.yaml
+conda create -n diffusion-inversion python=3.10
+
 conda activate diffusion-inversion
 ```
 
-### Install with pip
-
-You can also install the dependencies manually by executing the following commands:
+Install PyTorch:
 
 ```bash
-pip install torch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 --index-url https://download.pytorch.org/whl/cu118
-pip install -r requirements.txt
+conda install pytorch==2.2.0 torchvision==0.17.0 torchaudio==2.2.0 pytorch-cuda=11.8 -c pytorch -c nvidia
 ```
 
-Other versions of Python modules may work, but they are untested. We recommend using our conda environment to avoid any compatibility issues.
+Install other packages:
+
+```bash
+pip install -r requirements.txt
+```
 
 
 ## Getting Started
@@ -38,20 +38,26 @@ Please refer to [examples.ipynb](./examples.ipynb) for a quick start.
 
 ## Supported Methods
 
-- [x] (ICLR'21) DDIM Inversion: [paper](https://arxiv.org/abs/2010.02502)
-- [x] Negative Prompt Inversion (NPI): [paper](http://arxiv.org/abs/2305.16807)
-- [x] (CVPR'23) Null-Text Inversion (NTI): [paper](https://openaccess.thecvf.com/content/CVPR2023/html/Mokady_NULL-Text_Inversion_for_Editing_Real_Images_Using_Guided_Diffusion_Models_CVPR_2023_paper.html), [official implementation](https://github.com/google/prompt-to-prompt)
-- [x] (CVPR'23) Exact Diffusion Inversion via Coupled Transformations (EDICT): [paper](https://openaccess.thecvf.com/content/CVPR2023/html/Wallace_EDICT_Exact_Diffusion_Inversion_via_Coupled_Transformations_CVPR_2023_paper.html), [official implementation](https://github.com/salesforce/EDICT)
-- [x] (ICCV'23) Accelerated Iterative Diffusion Inversion (AIDI): [paper](https://openaccess.thecvf.com/content/ICCV2023/html/Pan_Effective_Real_Image_Editing_with_Accelerated_Iterative_Diffusion_Inversion_ICCV_2023_paper.html)
-- [x] (ICCV'23) Prompt Tuning Inversion (PTI): [paper](https://openaccess.thecvf.com/content/ICCV2023/html/Dong_Prompt_Tuning_Inversion_for_Text-driven_Image_Editing_Using_Diffusion_Models_ICCV_2023_paper.html)
-- [x] (NeurlPS'23) Real-world ImageVariation by ALignment (RIVAL): [paper](https://proceedings.neurips.cc/paper_files/paper/2023/hash/61960fdfda4d4e95fa1c1f6e64bfe8bc-Abstract-Conference.html), [official implementation](https://github.com/dvlab-research/RIVAL)
-- [x] Fixed-Point Inversion (FPI): [paper](https://arxiv.org/abs/2312.12540v1), [official implementation](https://github.com/dvirsamuel/FPI)
-- [x] (AAAI'24) Tuning-free Inversion-enhanced Control (TIC): [paper](https://ojs.aaai.org/index.php/AAAI/article/view/27931)
-- [ ] (ECCV'24) Bi-Directional Integration Approximation (BDIA): [paper](https://arxiv.org/abs/2307.10829), [official implementation](https://github.com/guoqiang-zhang-x/BDIA)
-- [ ] (ECCV'24) ReNoise: [paper](https://arxiv.org/abs/2403.14602), [official implementation](https://github.com/garibida/ReNoise-Inversion) 
-- [ ] (NeurlPS'24) Bidirectional Explicit Linear Multi-step (BELM): [paper](https://arxiv.org/abs/2410.07273), [official implementation](https://github.com/zituitui/BELM)
-- [ ] (AAAI'25 under review) our method
+| Method                                                       | Publication            | Paper                                                        | Official repo.                                            | Ours imp.                              |
+| ------------------------------------------------------------ | ---------------------- | ------------------------------------------------------------ | --------------------------------------------------------- | -------------------------------------- |
+| DDIM Inversion                                               | ICLR 2021              | [paper](https://arxiv.org/abs/2010.02502)                    |                                                           | [ours](./inversions/ddim/README.md)    |
+| Negative Prompt Inversion (NPI)                              | ArXiv 2023             | [paper](http://arxiv.org/abs/2305.16807)                     |                                                           | [ours](./inversions/npi/README.md)     |
+| Null-Text Inversion (NTI)                                    | CVPR 2023              | [paper](https://openaccess.thecvf.com/content/CVPR2023/html/Mokady_NULL-Text_Inversion_for_Editing_Real_Images_Using_Guided_Diffusion_Models_CVPR_2023_paper.html) | [official](https://github.com/google/prompt-to-prompt)    | [ours](./inversions/nti/README.md)     |
+| Exact Diffusion Inversion via Coupled Transformations (EDICT) | CVPR 2023              | [paper](https://openaccess.thecvf.com/content/CVPR2023/html/Wallace_EDICT_Exact_Diffusion_Inversion_via_Coupled_Transformations_CVPR_2023_paper.html) | [official](https://github.com/salesforce/EDICT)           | [ours](./inversions/edict/README.md)   |
+| Accelerated Iterative Diffusion Inversion (AIDI)             | ICCV 2023 Oral         | [paper](https://openaccess.thecvf.com/content/ICCV2023/html/Pan_Effective_Real_Image_Editing_with_Accelerated_Iterative_Diffusion_Inversion_ICCV_2023_paper.html) |                                                           | [ours](./inversions/aidi/README.md)    |
+| Prompt Tuning Inversion (PTI)                                | ICCV 2023              | [paper](https://openaccess.thecvf.com/content/ICCV2023/html/Dong_Prompt_Tuning_Inversion_for_Text-driven_Image_Editing_Using_Diffusion_Models_ICCV_2023_paper.html) |                                                           | [ours](./inversions/pti/README.md)     |
+| Real-world Image Variation by ALignment (RIVAL)              | NeurIPS 2023 Spotlight | [paper](https://proceedings.neurips.cc/paper_files/paper/2023/hash/61960fdfda4d4e95fa1c1f6e64bfe8bc-Abstract-Conference.html) | [official](https://github.com/dvlab-research/RIVAL)       | [ours](./inversions/rival/README.md)   |
+| Fixed-Point Inversion (FPI)                                  | ArXiv 2023             | [paper](https://arxiv.org/abs/2312.12540v1)                  | [official](https://github.com/dvirsamuel/FPI)             | [ours](./inversions/fpi/README.md)     |
+| On Exact Inversion of DPM-solvers                            | CVPR 2024              | [paper](https://openaccess.thecvf.com/content/CVPR2024/html/Hong_On_Exact_Inversion_of_DPM-Solvers_CVPR_2024_paper.html) | [official](https://github.com/smhongok/inv-dpm)           | TODO |
+| Tuning-free Inversion-enhanced Control (TIC)                 | AAAI 2024              | [paper](https://ojs.aaai.org/index.php/AAAI/article/view/27931) |                                                           | [ours](./inversions/tic/README.md)     |
+| Bi-Directional Integration Approximation (BDIA)              | ECCV 2024 Oral         | [paper](https://arxiv.org/abs/2307.10829)                    | [official](https://github.com/guoqiang-zhang-x/BDIA)      | [ours](./inversions/bdia/README.md)    |
+| ReNoise                                                      | ECCV 2024              | [paper](https://arxiv.org/abs/2403.14602)                    | [official](https://github.com/garibida/ReNoise-Inversion) | [ours](./inversions/renoise/README.md) |
+| Bidirectional Explicit Linear Multi-step (BELM)              | NeurlPS 2024           | [paper](https://arxiv.org/abs/2410.07273)                    | [official](https://github.com/zituitui/BELM)              | [ours](./inversions/belm/README.md)    |
 
+All methods above support Stable Diffusion v1, v2 and SDXL in our implementations. The following versions of diffusion model are fully tested:
+- [stable-diffusion-v1-5](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5)
+- [stable-diffusion-v2-1](https://huggingface.co/stabilityai/stable-diffusion-2-1)
+- [stable-diffusion-xl-base-1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0)
 
 ## Citation
 
