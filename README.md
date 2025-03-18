@@ -33,7 +33,7 @@ pip install -r requirements.txt
 
 ## 2. Getting Started
 
-Please refer to [examples_sd1.ipynb](./examples_sd1.ipynb) for a quick start.
+Please refer to [examples/](./examples) for a quick start.
 
 
 ## 3. Supported Methods

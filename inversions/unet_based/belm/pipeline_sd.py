@@ -213,7 +213,6 @@ class SDInversionPipeline(StableDiffusionPipeline):
                 alpha_i = alpha_i**0.5
                 alpha_i_minus_1 = alpha_i_minus_1**0.5
 
-
                 if i == 0:
                     latents = (alpha_i/alpha_i_minus_1)*latents+(sigma_i-(alpha_i/alpha_i_minus_1)*sigma_i_minus_1) * noise_pred
                 else:
