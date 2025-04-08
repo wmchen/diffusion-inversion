@@ -1,0 +1,17 @@
+# base
+tqdm
+mlcbase
+ipykernel
+ipywidgets
+
+# metric
+scikit-image
+pytorch_msssim
+lpips
+
+# diffusion
+sentencepiece
+protobuf
+diffusers==0.31.0
+transformers==4.47.0
+accelerate
