@@ -65,8 +65,8 @@ All methods above support Stable Diffusion v1, v2 and SDXL in our implementation
 
 | Method | Publication | Paper | Official repo. | Ours imp. |
 | ------ | ----------- | ----- | -------------- | --------- |
-| RF-Inversion | ICLR 2025 | [paper](https://arxiv.org/abs/2410.10792) | [official](https://github.com/LituRout/RF-Inversion) | [link](./inversions/dit_based/rf_inversion/) |
-| RF-Solver | ArXiv 2024 | [paper](https://arxiv.org/abs/2411.04746) | [official](https://github.com/wangjiangshan0725/RF-Solver-Edit) | TODO |
+| RF-Inversion | ICLR 2025 | [paper](https://arxiv.org/abs/2410.10792) | [official](https://github.com/LituRout/RF-Inversion) | [link](./inversions/dit_based/rf_inversion) |
+| RF-Solver | ArXiv 2024 | [paper](https://arxiv.org/abs/2411.04746) | [official](https://github.com/wangjiangshan0725/RF-Solver-Edit) | [ours](./inversions/dit_based//rf_inversion) |
 | FireFlow | ArXiv 2024 | [paper](https://arxiv.org/abs/2412.07517) | [official](https://github.com/HolmesShuan/FireFlow-Fast-Inversion-of-Rectified-Flow-for-Image-Semantic-Editing?tab=readme-ov-file) | TODO |
 
 CLAIM: The implementation of RF-Inversion is copy from [diffusers](https://github.com/huggingface/diffusers/blob/main/examples/community/pipeline_flux_rf_inversion.py).
