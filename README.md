@@ -3,9 +3,9 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-This repository is a collection of diffusion inversion methods.
+This repository is a collection of diffusion inversion methods. We implemented all mentioned methods in the repository using [diffusers](https://github.com/huggingface/diffusers).
 
-**NOTE** that this repository is only build for inversion, applications to downstream tasks (e.g. image editing, rare concept generation, etc) are not included.
+**NOTE** that this repository is only build for inversion, applications to downstream tasks (e.g. image editing, image variation, image inpainting, and rare concept generation, etc) are not included.
 
 
 ## 1. Installation
@@ -62,6 +62,7 @@ Please refer to [examples/](./examples) for a quick start.
 | Bi-Directional Integration Approximation (BDIA) | ECCV 2024 Oral | [paper](https://arxiv.org/abs/2307.10829) | [official](https://github.com/guoqiang-zhang-x/BDIA) | [ours](./inversions/unet_based/bdia) |
 | ReNoise | ECCV 2024 | [paper](https://arxiv.org/abs/2403.14602) | [official](https://github.com/garibida/ReNoise-Inversion) | [ours](./inversions/unet_based/renoise) |
 | Bidirectional Explicit Linear Multi-step (BELM) | NeurlPS 2024 | [paper](https://arxiv.org/abs/2410.07273) | [official](https://github.com/zituitui/BELM) | [ours](./inversions/unet_based/belm) |
+| Guided Newton Raphson Inversion (GNRI) | ICLR 2025 | [paper](https://openreview.net/pdf?id=t9l63huPRt) | [official](https://github.com/dvirsamuel/NewtonRaphsonInversion) | [ours](./inversions//unet_based/gnri) |
 
 All methods above support Stable Diffusion v1, v2 and SDXL in our implementations. The following versions of diffusion model are fully tested:
 - [stable-diffusion-v1-5](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5)

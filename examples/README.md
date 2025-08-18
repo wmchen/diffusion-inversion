@@ -15,6 +15,7 @@
 - [Bi-Directional Integration Approximation (BDIA)](./unet_based/bdia.py)
 - [ReNoise](./unet_based/renoise.py)
 - [Bidirectional Explicit Linear Multi-step (BELM)](./unet_based/belm.py)
+- [Guided Newton Raphson Inversion (GNRI)](./unet_based/gnri.py)
 
 ## DiT-based Diffusion Models
 
